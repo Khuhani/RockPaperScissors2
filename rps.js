@@ -22,7 +22,11 @@
     create a new variable that uses a template literal value to show the round's result
 */
 
-/* Logic to play the entire game */
+/* Logic to play the entire game 
+    create a function that takes the function for playing a single round and calls it 5 times
+    (for a 5-round game)
+    
+*/
 
 /* logic for computer choice */
 const compArray = ['rock','paper','scissors'];
@@ -37,11 +41,12 @@ function getComputerChoice(arr) {
     return item;
 }
 
+/*getComputerChoice(compArray);
+console.log (getComputerChoice(compArray));*/
 const compResult = getComputerChoice(compArray);
 console.log (compResult);
 
 /* logic for human choice */
-
 function getHumanChoice (human) {
     return human;
 }
@@ -49,61 +54,82 @@ function getHumanChoice (human) {
 const playerChoice = prompt('Enter rock,paper,or scissors');
 const humanResult = getHumanChoice(playerChoice.toLowerCase());
 console.log (humanResult);
+/*getHumanChoice(playerChoice.toLowerCase());
+console.log (getHumanChoice(playerChoice.toLowerCase()));*/
 
 /* variables to keep score */
 let humanScore = 0;
 let computerScore = 0;
 
+
 /* logic to play a single round */
 function playRound(humanResult,compResult) {
     /* player picks rock */
     if ((humanResult == 'rock') && (compResult == 'rock')) {
-        console.log ("It's a tie!")
-        console.log (`Player:${humanScore} PC:${computerScore}`)
+        console.log("It's a tie!")
     }
 
     else if ((humanResult == 'rock') && (compResult == 'paper')) {
-        console.log ("You lose! Paper beats Rock")
-        console.log (`Player:${humanScore} PC:${++computerScore}`)
+        console.log("You lose! Paper beats Rock")
     }
 
     else if ((humanResult == 'rock') && (compResult == 'scissors')) {
-        console.log ("You win! Rock beats Scissors")
-        console.log (`Player:${++humanScore} PC:${computerScore}`)
+        console.log("You win! Rock beats Scissors")
     };
 
     /* player picks paper */
     if ((humanResult == 'paper') && (compResult == 'paper')) {
-        console.log ("It's a tie!")
-        console.log (`Player:${humanScore} PC:${computerScore}`)
+        console.log("It's a tie!")
     }
 
     else if ((humanResult == 'paper') && (compResult == 'scissors')) {
-        console.log ("You lose! Scissors beats Paper")
-        console.log (`Player:${humanScore} PC:${++computerScore}`)
+        console.log("You lose! Scissors beats Paper")
     }
 
     else if ((humanResult == 'paper') && (compResult == 'rock')) {
-        console.log ("You win! Paper beats Rock")
-        console.log (`Player:${++humanScore} PC:${computerScore}`)
+        console.log("You win! Paper beats Rock")
     };
 
     /* player picks scissors */
     if ((humanResult == 'scissors') && (compResult == 'scissors')) {
-        console.log ("It's a tie!")
-        console.log (`Player:${humanScore} PC:${computerScore}`)
+        console.log("It's a tie!")
     }
 
     else if ((humanResult == 'scissors') && (compResult == 'rock')) {
-        console.log ("You lose! Rock beats Scissors")
-        console.log (`Player:${humanScore} PC:${++computerScore}`)
+        console.log("You lose! Rock beats Scissors")
     }
 
     else if ((humanResult == 'scissors') && (compResult == 'paper')) {
-        console.log ("You win! Scissors beats Paper")
-        console.log (`Player:${++humanScore} PC:${computerScore}`)
+        console.log("You win! Scissors beats Paper")
     };
 }
 
-let roundResult = playRound(humanResult,compResult);
+/*playRound(humanResult,compResult);*/
+
+/*Consider creating a function for the game score. To keep track of the score & increment accordingly per round played.
+Maybe have it reside in the playRound function. Also, delete the console.log template literal lines*/
+
+function playGame() {
+    let winner = playRound(humanResult,compResult);
+
+    if (winner === 
+        "You win! Rock beats Scissors" ||
+        "You win! Paper beats Rock" ||
+        "You win! Scissors beats Paper") 
+        {++humanScore;
+            console.log (`Human:${humanScore} PC:${computerScore}`)}
+
+    else if (winner === 
+        "You lose! Paper beats Rock" ||
+        "You lose! Scissors beats Paper" ||
+        "You lose! Rock beats Scissors") 
+        {++computerScore;
+            console.log (`Human:${humanScore} PC:${computerScore}`)}
+    
+    else {console.log("DRAW!")};
+}
+
+playGame();
+
+
 
