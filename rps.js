@@ -64,43 +64,62 @@ let computerScore = 0;
 
 /* logic to play a single round */
 function playRound(humanResult,compResult) {
+    let result;
     /* player picks rock */
     if ((humanResult == 'rock') && (compResult == 'rock')) {
-        console.log("It's a tie!")
+        console.log("It's a tie!");
+        result = "DRAW";
+        return result;
     }
 
     else if ((humanResult == 'rock') && (compResult == 'paper')) {
-        console.log("You lose! Paper beats Rock")
+        console.log("You lose! Paper beats Rock");
+        result = "C";
+        return result;
     }
 
     else if ((humanResult == 'rock') && (compResult == 'scissors')) {
-        console.log("You win! Rock beats Scissors")
+        console.log("You win! Rock beats Scissors");
+        result = "H";
+        return result;
     };
 
     /* player picks paper */
     if ((humanResult == 'paper') && (compResult == 'paper')) {
-        console.log("It's a tie!")
+        console.log("It's a tie!");
+        result = "DRAW";
+        return result;
     }
 
     else if ((humanResult == 'paper') && (compResult == 'scissors')) {
-        console.log("You lose! Scissors beats Paper")
+        console.log("You lose! Scissors beats Paper");
+        result = "C";
+        return result;
     }
 
     else if ((humanResult == 'paper') && (compResult == 'rock')) {
-        console.log("You win! Paper beats Rock")
+        console.log("You win! Paper beats Rock");
+        result = "H";
+        return result;
     };
 
     /* player picks scissors */
     if ((humanResult == 'scissors') && (compResult == 'scissors')) {
-        console.log("It's a tie!")
+        console.log("It's a tie!");
+        result = "DRAW";
+        return result;
     }
 
     else if ((humanResult == 'scissors') && (compResult == 'rock')) {
-        console.log("You lose! Rock beats Scissors")
+        console.log("You lose! Rock beats Scissors");
+        result = "C";
+        return result;
     }
 
     else if ((humanResult == 'scissors') && (compResult == 'paper')) {
-        console.log("You win! Scissors beats Paper")
+        console.log("You win! Scissors beats Paper");
+        result = "H";
+        return result;
     };
 }
 
@@ -112,17 +131,17 @@ Maybe have it reside in the playRound function. Also, delete the console.log tem
 function playGame() {
     let winner = playRound(humanResult,compResult);
 
-    if (winner === 
-        "You win! Rock beats Scissors" ||
+    if (winner == "H"
+        /*"You win! Rock beats Scissors" ||
         "You win! Paper beats Rock" ||
-        "You win! Scissors beats Paper") 
+        "You win! Scissors beats Paper"*/) 
         {++humanScore;
             console.log (`Human:${humanScore} PC:${computerScore}`)}
 
-    else if (winner === 
-        "You lose! Paper beats Rock" ||
+    else if (winner == "C"
+        /*"You lose! Paper beats Rock" ||
         "You lose! Scissors beats Paper" ||
-        "You lose! Rock beats Scissors") 
+        "You lose! Rock beats Scissors"*/) 
         {++computerScore;
             console.log (`Human:${humanScore} PC:${computerScore}`)}
     
