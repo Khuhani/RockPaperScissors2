@@ -29,38 +29,37 @@
 */
 
 /* logic for computer choice */
-const compArray = ['rock','paper','scissors'];
+/*const compArray = ['rock','paper','scissors'];*/
 
-function getComputerChoice(arr) {
+
+function getComputerChoice() {
+    let compArray = ['rock','paper','scissors'];
+
     /* get random index value */
-    const randomIndex = Math.floor(Math.random() * arr.length);
+    const randomIndex = Math.floor(Math.random() * compArray.length);
     
     /* get random item */
-    const item = arr[randomIndex];
+    const item = compArray[randomIndex];
     
     return item;
 }
 
-/*getComputerChoice(compArray);
-console.log (getComputerChoice(compArray));*/
-const compResult = getComputerChoice(compArray);
-console.log (compResult);
+/*const compValue = getComputerChoice();
+console.log (compValue);*/
 
 /* logic for human choice */
-function getHumanChoice (human) {
-    return human;
+function getHumanChoice() {
+    const playerChoice = prompt('Enter rock,paper,or scissors');
+    return playerChoice.toLowerCase();
 }
 
-const playerChoice = prompt('Enter rock,paper,or scissors');
-const humanResult = getHumanChoice(playerChoice.toLowerCase());
-console.log (humanResult);
-/*getHumanChoice(playerChoice.toLowerCase());
-console.log (getHumanChoice(playerChoice.toLowerCase()));*/
+/*const humanValue = getHumanChoice();
+console.log (humanValue);*/
+
 
 /* variables to keep score */
 let humanScore = 0;
 let computerScore = 0;
-
 
 /* logic to play a single round */
 function playRound(humanResult,compResult) {
@@ -121,34 +120,34 @@ function playRound(humanResult,compResult) {
         result = "H";
         return result;
     };
+//write code to increment the humanScore or CompScore based on round winner//
 }
 
-/*playRound(humanResult,compResult);*/
+//console.log(playRound(getHumanChoice(),getComputerChoice()));//
 
 /*Consider creating a function for the game score. To keep track of the score & increment accordingly per round played.
 Maybe have it reside in the playRound function. Also, delete the console.log template literal lines*/
 
 function playGame() {
-    let winner = playRound(humanResult,compResult);
 
-    if (winner == "H"
-        /*"You win! Rock beats Scissors" ||
-        "You win! Paper beats Rock" ||
-        "You win! Scissors beats Paper"*/) 
-        {++humanScore;
-            console.log (`Human:${humanScore} PC:${computerScore}`)}
+    for (let i=0; i<5; i++) {
 
-    else if (winner == "C"
-        /*"You lose! Paper beats Rock" ||
-        "You lose! Scissors beats Paper" ||
-        "You lose! Rock beats Scissors"*/) 
-        {++computerScore;
-            console.log (`Human:${humanScore} PC:${computerScore}`)}
+    let winner = playRound(getHumanChoice(),getComputerChoice());
+    /*getComputerChoice();
+    getHumanChoice();*/
+
+    if (winner == "H") 
+        {++humanScore; console.log (`Human:${humanScore} PC:${computerScore}`)}
+
+    else if (winner == "C") 
+        {++computerScore; console.log (`Human:${humanScore} PC:${computerScore}`)}
     
     else {console.log("DRAW!")};
-}
+};
+};
 
 playGame();
+
 
 
 
