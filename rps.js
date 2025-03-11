@@ -30,8 +30,6 @@
 
 /* logic for computer choice */
 /*const compArray = ['rock','paper','scissors'];*/
-
-
 function getComputerChoice() {
     let compArray = ['rock','paper','scissors'];
 
@@ -125,9 +123,7 @@ function playRound(humanResult,compResult) {
 
 //console.log(playRound(getHumanChoice(),getComputerChoice()));//
 
-/*Consider creating a function for the game score. To keep track of the score & increment accordingly per round played.
-Maybe have it reside in the playRound function. Also, delete the console.log template literal lines*/
-
+/* logic to play a 5-round game */
 function playGame() {
 
     for (let i=0; i<5; i++) {
@@ -144,6 +140,21 @@ function playGame() {
     
     else {console.log("DRAW!")};
 };
+
+function outcome() {
+    if (humanScore>computerScore) {
+        console.log(`5 Rounds Done --- YOU WIN! --- Human:${humanScore} PC:${computerScore}`);
+    }
+
+    else if (computerScore>humanScore) {
+        console.log(`5 Rounds Done --- PC WINS! Play Again? --- Human:${humanScore} PC:${computerScore}`);
+    }
+
+    else {
+        console.log(`5 Rounds Done --- IT'S A TIE! Play Again? --- Human:${humanScore} PC:${computerScore}`);
+    }
+}
+outcome();
 };
 
 playGame();
