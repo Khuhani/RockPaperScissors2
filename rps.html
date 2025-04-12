@@ -4,14 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <style>
+    <!--<style>
         body {background-color: black;}
         h1 {color:antiquewhite; display: flex; justify-content: center;}
-    </style>
-
+    </style>-->
+    <link rel="stylesheet" href="rps.css">
 </head>
 <body>
-    <script src="./rps.js"></script>
     <h1>Rock Paper Scissors</h1>
+    
+    <h2>Player Choice: <span id="player-choice"></span></h2>
+    <h2>PC Choice: <span id="computer-choice"></span></h2>
+    <h2>Result: <span id="result"></span></h2>
+    <h2>Human: <span id="human-score"></span></h2>
+    <h2>PC: <span id="comp-score"></span></h2>
+    <h2>Five-Round Outcome: <span id="outcome"></span></h2>
+
+    <div class="btn-container">
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    </div>
+
+
+<script src="rps.js"></script>
 </body>
 </html>

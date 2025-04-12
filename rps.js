@@ -28,8 +28,27 @@
     
 */
 
-/* logic for computer choice */
-/*const compArray = ['rock','paper','scissors'];*/
+let playerChoiceDisplay = document.querySelector("#player-choice");
+let computerChoiceDisplay = document.querySelector("#computer-choice");
+let resultDisplay = document.querySelector('#result');
+let playerScore = document.querySelector("#human-score");
+let pcScore = document.querySelector("#comp-score");
+let outcomeDisplay = document.querySelector('#outcome');
+let buttons = document.querySelectorAll("button");
+
+
+/*logic for human choice*/
+    buttons.forEach(btn =>btn.addEventListener("click",e =>
+    {let playerChoice = e.target.id;
+    let computerChoice = getComputerChoice();
+    playerChoiceDisplay.textContent = playerChoice;
+    computerChoiceDisplay.textContent = computerChoice;
+    playRound(playerChoice,computerChoice);
+    }
+    ));
+
+
+/*logic for computer choice*/
 function getComputerChoice() {
     let compArray = ['rock','paper','scissors'];
 
@@ -38,126 +57,114 @@ function getComputerChoice() {
     
     /* get random item */
     const item = compArray[randomIndex];
-    
     return item;
-}
-
-/*const compValue = getComputerChoice();
-console.log (compValue);*/
-
-/* logic for human choice */
-function getHumanChoice() {
-    const playerChoice = prompt('Enter rock,paper,or scissors');
-    return playerChoice.toLowerCase();
-}
-
-/*const humanValue = getHumanChoice();
-console.log (humanValue);*/
-
+};
 
 /* variables to keep score */
 let humanScore = 0;
-let computerScore = 0;
+playerScore.textContent = humanScore;
 
-/* logic to play a single round */
+let computerScore = 0;
+pcScore.textContent = computerScore;
+
+
+/*logic to play a single round*/
 function playRound(humanResult,compResult) {
+    console.log(`You chose:${humanResult}`);
+    console.log(`PC chose:${compResult}`);
     let result;
     /* player picks rock */
     if ((humanResult == 'rock') && (compResult == 'rock')) {
-        console.log("It's a tie!");
+        resultDisplay.textContent = "It's a tie!";
         result = "DRAW";
         return result;
     }
 
     else if ((humanResult == 'rock') && (compResult == 'paper')) {
-        console.log("You lose! Paper beats Rock");
+        resultDisplay.textContent = "You lose! Paper beats Rock";
+        computerScore++;
+        pcScore.textContent = computerScore;
         result = "C";
         return result;
     }
 
     else if ((humanResult == 'rock') && (compResult == 'scissors')) {
-        console.log("You win! Rock beats Scissors");
+        resultDisplay.textContent = "You win! Rock beats Scissors";
+        humanScore++;
+        playerScore.textContent = humanScore;
         result = "H";
         return result;
     };
 
     /* player picks paper */
     if ((humanResult == 'paper') && (compResult == 'paper')) {
-        console.log("It's a tie!");
+        resultDisplay.textContent = "It's a tie!";
         result = "DRAW";
         return result;
     }
 
     else if ((humanResult == 'paper') && (compResult == 'scissors')) {
-        console.log("You lose! Scissors beats Paper");
+        resultDisplay.textContent = "You lose! Scissors beats Paper";
+        computerScore++;
+        pcScore.textContent = computerScore;
         result = "C";
         return result;
     }
 
     else if ((humanResult == 'paper') && (compResult == 'rock')) {
-        console.log("You win! Paper beats Rock");
+        resultDisplay.textContent = "You win! Paper beats Rock";
+        humanScore++;
+        playerScore.textContent = humanScore;
         result = "H";
         return result;
     };
 
     /* player picks scissors */
     if ((humanResult == 'scissors') && (compResult == 'scissors')) {
-        console.log("It's a tie!");
+        resultDisplay.textContent = "It's a tie!";
         result = "DRAW";
         return result;
     }
 
     else if ((humanResult == 'scissors') && (compResult == 'rock')) {
-        console.log("You lose! Rock beats Scissors");
+        resultDisplay.textContent = "You lose! Rock beats Scissors";
+        computerScore++;
+        pcScore.textContent = computerScore;
         result = "C";
         return result;
     }
 
     else if ((humanResult == 'scissors') && (compResult == 'paper')) {
-        console.log("You win! Scissors beats Paper");
+        resultDisplay.textContent = "You win! Scissors beats Paper";
+        humanScore++;
+        playerScore.textContent = humanScore;
         result = "H";
         return result;
     };
-//write code to increment the humanScore or CompScore based on round winner//
-}
-
-//console.log(playRound(getHumanChoice(),getComputerChoice()));//
-
-/* logic to play a 5-round game */
-function playGame() {
-
-    for (let i=0; i<5; i++) {
-
-    let winner = playRound(getHumanChoice(),getComputerChoice());
-    /*getComputerChoice();
-    getHumanChoice();*/
-
-    if (winner == "H") 
-        {++humanScore; console.log (`Human:${humanScore} PC:${computerScore}`)}
-
-    else if (winner == "C") 
-        {++computerScore; console.log (`Human:${humanScore} PC:${computerScore}`)}
-    
-    else {console.log("DRAW!")};
 };
 
 function outcome() {
-    if (humanScore>computerScore) {
-        console.log(`5 Rounds Done --- YOU WIN! --- Human:${humanScore} PC:${computerScore}`);
+    let count = 0;
+    buttons.forEach(btn => btn.addEventListener("click", function() {
+    count++;
+    console.log(count);
+    if((count == 5) && (humanScore > computerScore)) {
+        outcomeDisplay.textContent = "You win! Refresh page to play again."
     }
-
-    else if (computerScore>humanScore) {
-        console.log(`5 Rounds Done --- PC WINS! Play Again? --- Human:${humanScore} PC:${computerScore}`);
+    else if((count == 5) && (computerScore > humanScore)) {
+        outcomeDisplay.textContent = "You lose! Refresh page to play again."
     }
-
-    else {
-        console.log(`5 Rounds Done --- IT'S A TIE! Play Again? --- Human:${humanScore} PC:${computerScore}`);
+    else if((count == 5) && (humanScore == computerScore)) {
+        outcomeDisplay.textContent = "It's a tie! Refresh page to play again."
     }
-}
-outcome();
+    else if(count > 5) {
+        outcomeDisplay.textContent = "Sorry, won't count! Please refresh page to start new 5-round match."
+    }
+}));
 };
 
-playGame();
+outcome();
+
 
 
 
